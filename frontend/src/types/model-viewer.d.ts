@@ -1,3 +1,4 @@
+// Allows usage of <model-viewer> in JSX/TSX
 declare namespace JSX {
   interface IntrinsicElements {
     'model-viewer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
@@ -6,9 +7,6 @@ declare namespace JSX {
       autoRotate?: boolean | string;
       cameraControls?: boolean | string;
       ar?: boolean | string;
-      poster?: string;
-      shadowIntensity?: number | string;
-      exposure?: number | string;
       style?: React.CSSProperties;
     };
   }

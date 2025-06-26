@@ -1,4 +1,4 @@
-'use client';  // Ensure this page is a client component
+'use client';
 
 import '@google/model-viewer';
 import { Button } from '@/components/ui/button';
@@ -11,11 +11,11 @@ export default function Home() {
       <h1 className="text-5xl font-bold drop-shadow-lg text-center">
         Engagify XR Platform
       </h1>
-      
+
       {/* 3D Model Viewer Section */}
       <section className="w-full max-w-xl flex flex-col items-center">
         <model-viewer
-          src="/models/logo.glb"  // Ensure you have a model file at public/models/logo.glb
+          src="/models/logo.glb"
           alt="Platform Logo"
           auto-rotate
           camera-controls
@@ -26,7 +26,7 @@ export default function Home() {
         <p className="mt-4 text-lg text-center">Experience our immersive 3D logo in action!</p>
       </section>
 
-      {/* Interactive Card Example */}
+      {/* Interactive Card */}
       <Card className="bg-white/10 backdrop-blur-md border-white/20 w-full max-w-sm shadow-xl">
         <CardContent className="p-6 text-center">
           <p className="text-lg">Explore our platform and dive into immersive learning experiences.</p>
