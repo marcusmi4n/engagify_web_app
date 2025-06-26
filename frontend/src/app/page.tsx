@@ -2,9 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
+import ExperienceGrid from '@/components/experiences/ExperienceGrid';
+// Optional: import your Lottie component
+// import Lottie from 'lottie-react';
+// import scrollAnimation from '@/lotties/scroll-down.json';
 
 export default function HomePage() {
   const [position, setPosition] = useState({ x: 50, y: 50 });
@@ -24,35 +27,36 @@ export default function HomePage() {
 
   return (
     <main
-      className="min-h-screen relative overflow-hidden text-white"
+      className="relative min-h-screen overflow-hidden text-white"
       style={{
-        background: `radial-gradient(at ${position.x}% ${position.y}%,rgb(109, 197, 238) 0%, #1e1b4b 100%)`,
+        background: `radial-gradient(at ${position.x}% ${position.y}%, #135858 0%, #071a2f 100%)`,
         transition: 'background 0.3s ease',
       }}
     >
-      {/* NAVBAR */}
-      <header className="flex items-center justify-between px-6 py-4 w-full z-10">
-        {/* Logo */}
+      {/* ✨ Stars Layer */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="w-full h-full bg-[radial-gradient(white_0.6px,transparent_1px)] bg-[length:40px_40px] opacity-10"></div>
+      </div>
+
+      {/* 🔷 Navbar */}
+      <header className="relative z-10 flex items-center justify-between px-6 py-4">
         <div className="flex items-center gap-2">
           <model-viewer
             src="/models/logo.glb"
             auto-rotate
-            camera-controls
-            style={{ width: '60px', height: '60px' }}
+            style={{ width: '80px', height: '80px' }}
           ></model-viewer>
           <h1 className="text-xl font-bold">Engagify</h1>
         </div>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-4 items-center">
           <Link href="/signup">
-            <button className="text-white hover:text-blue-500 transition duration-300">
+            <button className="text-white hover:text-cyan-300 transition duration-300">
               Sign Up
             </button>
           </Link>
         </nav>
 
-        {/* Mobile Navigation */}
         <div className="md:hidden">
           <Sheet>
             <SheetTrigger>
@@ -67,23 +71,54 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION */}
-      <section className="flex flex-col items-center justify-center text-center px-6 h-[80vh]">
-        <h2 className="text-5xl font-bold leading-tight drop-shadow-lg">
-          Dive into the World of 3D Learning
-        </h2>
-        <p className="mt-4 text-lg text-white/80 max-w-xl">
-          Create, explore, and interact with immersive educational experiences powered by Engagify XR.
-        </p>
+      {/* 🔶 Hero Section */}
+      <section className="relative flex flex-col items-center justify-center text-center px-6 min-h-[90vh] z-10">
+        <div className="relative z-20 max-w-3xl">
+          <h2 className="text-5xl font-bold drop-shadow-lg">
+            Dive into the World of 3D Learning
+          </h2>
+          <p className="mt-4 text-lg text-white/80">
+            Create, explore, and interact with immersive educational experiences powered by Engagify XR.
+          </p>
+        </div>
+
+        {/* 🎥 3D Model Animation on the Right */}
+        <div className="absolute bottom-10 right-8 z-30 w-[280px] h-[280px] pointer-events-none">
+          <model-viewer
+            src="/models/gibb.glb"
+            auto-rotate
+            camera-controls
+            autoplay
+            disable-zoom
+            style={{ width: '320px', height: '320px' }}
+          ></model-viewer>
+        </div>
       </section>
 
-      {/* Scroll Down Area */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        {/* Replace below with your Lottie animation */}
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce feather feather-chevron-down">
-          <polyline points="6 9 12 15 18 9"></polyline>
+      {/* ⬇️ Scroll Indicator / Replace with Lottie later */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        {/* Add your Lottie here like below if ready */}
+        {/* <Lottie animationData={scrollAnimation} loop autoplay className="w-10 h-10" /> */}
+        <svg
+          width="30"
+          height="30"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#ffffff"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="animate-bounce drop-shadow-lg"
+        >
+          <polyline points="6 9 12 15 18 9" />
         </svg>
       </div>
+
+      {/* 🌈 Gradient Fade into Experiences */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#071a2f] z-10 pointer-events-none" />
+
+      {/* 📦 Experience Grid */}
+      
     </main>
   );
 }
