@@ -14,7 +14,7 @@ export default function AuthPage() {
       <Card className="w-full max-w-md shadow-xl border-white/20 bg-white/10 backdrop-blur-md text-white">
         <CardContent className="p-6 space-y-6">
           <h2 className="text-3xl font-bold text-center">
-            {isLogin ? 'Login to Engagify' : 'Create Your Account'}
+            {isLogin ? 'Log In to Engagify' : 'Create Your Account'}
           </h2>
 
           <form className="space-y-4">
