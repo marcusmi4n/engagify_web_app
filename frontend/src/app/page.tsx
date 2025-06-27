@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import ExperienceGrid from '@/components/experiences/ExperienceGrid';
-// Optional: import your Lottie component
 // import Lottie from 'lottie-react';
 // import scrollAnimation from '@/lotties/scroll-down.json';
 
@@ -44,6 +43,7 @@ export default function HomePage() {
           <model-viewer
             src="/models/logo.glb"
             auto-rotate
+            disable-zoom
             style={{ width: '80px', height: '80px' }}
           ></model-viewer>
           <h1 className="text-xl font-bold">Engagify</h1>
@@ -72,7 +72,7 @@ export default function HomePage() {
       </header>
 
       {/* 🔶 Hero Section */}
-      <section className="relative flex flex-col items-center justify-center text-center px-6 min-h-[90vh] z-10">
+      <section className="relative flex flex-col items-center justify-center text-center px-6 min-h-[80vh] z-10">
         <div className="relative z-20 max-w-3xl">
           <h2 className="text-5xl font-bold drop-shadow-lg">
             Dive into the World of 3D Learning
@@ -88,14 +88,15 @@ export default function HomePage() {
             src="/models/gibb.glb"
             auto-rotate
             camera-controls
+            disable-zoom
             autoplay
             style={{ width: '100%', height: '100%' }}
           ></model-viewer>
         </div>
       </section>
 
-      {/* ⬇️ Scroll Indicator / Replace with Lottie later */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+      {/* ⬇️ Scroll Indicator */}
+      <div className="relative z-30 flex justify-center pb-10">
         {/* <Lottie animationData={scrollAnimation} loop autoplay className="w-10 h-10" /> */}
         <svg
           width="30"
@@ -113,9 +114,12 @@ export default function HomePage() {
       </div>
 
       {/* 🌈 Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#071a2f] z-10 pointer-events-none" />
+      <div className="h-20 bg-gradient-to-b from-transparent to-[#071a2f] z-10 -mt-4 pointer-events-none" />
 
-     
+      {/* 📦 Experience Grid */}
+      <div className="relative z-20">
+        <ExperienceGrid />
+      </div>
     </main>
   );
 }
