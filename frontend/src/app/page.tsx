@@ -83,21 +83,19 @@ export default function HomePage() {
         </div>
 
         {/* 🎥 3D Model Animation on the Right */}
-        <div className="absolute bottom-10 right-8 z-30 w-[280px] h-[280px] pointer-events-none">
+        <div className="absolute bottom-10 right-8 z-30 w-[320px] h-[320px]">
           <model-viewer
             src="/models/gibb.glb"
             auto-rotate
             camera-controls
             autoplay
-            disable-zoom
-            style={{ width: '320px', height: '320px' }}
+            style={{ width: '100%', height: '100%' }}
           ></model-viewer>
         </div>
       </section>
 
       {/* ⬇️ Scroll Indicator / Replace with Lottie later */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-        {/* Add your Lottie here like below if ready */}
         {/* <Lottie animationData={scrollAnimation} loop autoplay className="w-10 h-10" /> */}
         <svg
           width="30"
@@ -114,11 +112,10 @@ export default function HomePage() {
         </svg>
       </div>
 
-      {/* 🌈 Gradient Fade into Experiences */}
+      {/* 🌈 Gradient Fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#071a2f] z-10 pointer-events-none" />
 
-      {/* 📦 Experience Grid */}
-      
+     
     </main>
   );
 }
