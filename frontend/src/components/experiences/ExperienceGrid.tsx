@@ -20,14 +20,14 @@ const dummyExperiences = [
     title: 'Human Anatomy',
     description: 'Walk through the body in VR.',
     category: 'Biology',
-    image: '/images/biology.jpg',
+    image: '/images/human.jpeg',
   },
   {
     id: 'ww2-map',
     title: 'World War II Map',
     description: 'Interactive battles timeline.',
     category: 'History',
-    image: '/images/history.jpg',
+    image: '/images/ww2.png',
   },
 ];
 
@@ -72,8 +72,12 @@ export default function ExperienceGrid() {
             transition={{ duration: 0.5, delay: idx * 0.1 }}
             viewport={{ once: true }}
           >
-            <Link href={`/experienceView/${exp.id}`} target="_blank">
-              <Card className="relative bg-white/10 backdrop-blur-md border border-cyan-200/20 rounded-xl overflow-hidden transition-all duration-300 hover:border-cyan-400/80 cursor-pointer">
+            <Link
+              href={`/experience-view/${exp.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Card className="relative bg-white/10 backdrop-blur-md border border-cyan-200/20 rounded-xl overflow-hidden transition-all duration-300 hover:border-cyan-400/80 cursor-pointer group">
                 <img
                   src={exp.image}
                   alt={exp.title}
@@ -88,7 +92,7 @@ export default function ExperienceGrid() {
                   </p>
                 </CardContent>
 
-                {/* Glow Effect on Border */}
+                {/* Glow Effect on Hover */}
                 <div className="absolute inset-0 rounded-xl pointer-events-none group-hover:shadow-[0_0_18px_2px_rgba(0,255,255,0.25)] transition duration-300" />
               </Card>
             </Link>
