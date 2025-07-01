@@ -85,7 +85,8 @@ export default function HomePage() {
         {/* 🎥 3D Model Animation on the Right */}
         <div className="absolute bottom-10 right-8 z-30 w-[320px] h-[320px]">
           <model-viewer
-            src="/models/bluewhale.glb"
+            src="/models/gibb.glb"
+            auto-rotate
             camera-controls
             disable-zoom
             autoplay

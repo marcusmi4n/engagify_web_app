@@ -104,7 +104,7 @@ export default function SolarSystemPage() {
 
           {/* Experience Details */}
           <section className="mt-12 bg-[#0c1e30] p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold mb-4">Solar System Journey</h2>
+            <h2 className="text-2xl font-bold mb-4">World War II Map</h2>
             <p className="text-white/80 mb-6 max-w-3xl">
               Explore the solar system in immersive 3D using AR and VR. Learn about planets,
               moons, and the sun like never before.
