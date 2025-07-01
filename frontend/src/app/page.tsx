@@ -5,11 +5,11 @@ import Link from 'next/link';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import ExperienceGrid from '@/components/experiences/ExperienceGrid';
-// import Lottie from 'lottie-react';
-// import scrollAnimation from '@/lotties/scroll-down.json';
+import AuthModal from '@/components/AuthModal';
 
-export default function HomePage() {
+export default function Page() {
   const [position, setPosition] = useState({ x: 50, y: 50 });
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     import('@google/model-viewer');
@@ -32,7 +32,7 @@ export default function HomePage() {
         transition: 'background 0.3s ease',
       }}
     >
-      {/* ✨ Stars Layer */}
+      {/* ⭐ Background Stars */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="w-full h-full bg-[radial-gradient(white_0.6px,transparent_1px)] bg-[length:40px_40px] opacity-10"></div>
       </div>
@@ -50,11 +50,12 @@ export default function HomePage() {
         </div>
 
         <nav className="hidden md:flex gap-4 items-center">
-          <Link href="/signup">
-            <button className="text-white hover:text-cyan-300 transition duration-300">
-              Sign Up
-            </button>
-          </Link>
+          <button
+            onClick={() => setModalOpen(true)}
+            className="text-white hover:text-cyan-300 transition duration-300"
+          >
+            Sign Up
+          </button>
         </nav>
 
         <div className="md:hidden">
@@ -64,7 +65,7 @@ export default function HomePage() {
             </SheetTrigger>
             <SheetContent side="right" className="bg-[#0f172a] text-white">
               <nav className="flex flex-col gap-4 mt-10">
-                <Link href="/signup">Sign Up</Link>
+                <button onClick={() => setModalOpen(true)}>Sign Up</button>
               </nav>
             </SheetContent>
           </Sheet>
@@ -82,7 +83,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* 🎥 3D Model Animation on the Right */}
+        {/* 🎥 3D Model Animation */}
         <div className="absolute bottom-10 right-8 z-30 w-[320px] h-[320px]">
           <model-viewer
             src="/models/gibb.glb"
@@ -97,7 +98,6 @@ export default function HomePage() {
 
       {/* ⬇️ Scroll Indicator */}
       <div className="relative z-30 flex justify-center pb-10">
-        {/* <Lottie animationData={scrollAnimation} loop autoplay className="w-10 h-10" /> */}
         <svg
           width="30"
           height="30"
@@ -113,13 +113,13 @@ export default function HomePage() {
         </svg>
       </div>
 
-      {/* 🌈 Gradient Fade */}
-      <div className="h-20 bg-gradient-to-b from-transparent to-[#071a2f] z-10 -mt-4 pointer-events-none" />
-
       {/* 📦 Experience Grid */}
       <div className="relative z-20">
         <ExperienceGrid />
       </div>
+
+      {/* 🔐 Auth Modal */}
+      <AuthModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </main>
   );
 }

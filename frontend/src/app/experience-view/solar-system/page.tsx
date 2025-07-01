@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import '@google/model-viewer';
 
 export default function SolarSystemPage() {
   const [chatOpen, setChatOpen] = useState(false);
@@ -27,7 +28,7 @@ export default function SolarSystemPage() {
       {isFullscreen ? (
         <div className="fixed inset-0 bg-black z-50 flex flex-col items-center justify-center">
           <model-viewer
-            src="/models/black_arm.glb" // Change to your actual model e.g., /models/solar-system.glb
+            src="/models/blue_whale.glb" // Change to your actual model e.g., /models/solar-system.glb
             auto-rotate
             camera-controls
             ar
@@ -49,7 +50,7 @@ export default function SolarSystemPage() {
             {/* 3D Model */}
             <div className="md:col-span-2 relative">
               <model-viewer
-                src="/models/black_arm.glb"
+                src="/models/blue_whale.glb"
                 auto-rotate
                 camera-controls
                 ar

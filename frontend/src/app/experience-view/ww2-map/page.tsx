@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import '@google/model-viewer';
 
 export default function SolarSystemPage() {
   const [chatOpen, setChatOpen] = useState(false);
