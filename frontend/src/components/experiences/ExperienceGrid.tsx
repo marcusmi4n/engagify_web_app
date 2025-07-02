@@ -72,11 +72,7 @@ export default function ExperienceGrid() {
             transition={{ duration: 0.5, delay: idx * 0.1 }}
             viewport={{ once: true }}
           >
-            <Link
-              href={`/experience-view/${exp.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link href={`/experience/${exp.id}`}>
               <Card className="relative bg-white/10 backdrop-blur-md border border-cyan-200/20 rounded-xl overflow-hidden transition-all duration-300 hover:border-cyan-400/80 cursor-pointer group">
                 <img
                   src={exp.image}

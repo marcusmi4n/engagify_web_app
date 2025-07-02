@@ -1,10 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import '@google/model-viewer';
 
-export default function SolarSystemPage() {
+type Experience = {
+  id: string;
+  title: string;
+  description: string;
+  modelFile: string;
+  author: string;
+};
+
+export default function ExperiencePage() {
+  const { id } = useParams();
+  const [experience, setExperience] = useState<Experience | null>(null);
   const [chatOpen, setChatOpen] = useState(false);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([
@@ -12,8 +23,36 @@ export default function SolarSystemPage() {
     'Felt like I was in space! - Alex',
     'Great for learning planets. - Sam',
   ]);
-
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const experiences: Experience[] = [
+      {
+        id: 'solar-system',
+        title: 'Solar System Journey',
+        description: 'Explore the solar system in immersive 3D using AR and VR.',
+        modelFile: 'solar-system.glb',
+        author: 'Prof. Marcus',
+      },
+      {
+        id: 'human-anatomy',
+        title: 'Human Anatomy',
+        description: 'Walk through the body and discover the human anatomy in detail.',
+        modelFile: 'realistic_human_heart.glb',
+        author: 'Dr. Diana K.',
+      },
+      {
+        id: 'ww2-map',
+        title: 'WWII Battle Map',
+        description: 'Visualize the battles of World War II on an interactive 3D map.',
+        modelFile: 'ww2-map.glb',
+        author: 'Prof. Sato',
+      },
+    ];
+
+    const found = experiences.find((exp) => exp.id === id);
+    setExperience(found || null);
+  }, [id]);
 
   const handleAddReview = () => {
     if (review.trim()) {
@@ -22,13 +61,17 @@ export default function SolarSystemPage() {
     }
   };
 
+  if (!experience) {
+    return <div className="p-10 text-red-400 text-center">Experience not found.</div>;
+  }
+
   return (
     <main className="min-h-screen bg-[#071a2f] text-white px-4 md:px-12 py-10 relative">
-      {/* 🔳 Fullscreen Model Viewer */}
+      {/* Fullscreen 3D Model */}
       {isFullscreen ? (
         <div className="fixed inset-0 bg-black z-50 flex flex-col items-center justify-center">
           <model-viewer
-            src="/models/realistic_human_heart.glb" // Change to your actual model e.g., /models/solar-system.glb
+            src={`/models/${experience.modelFile}`}
             auto-rotate
             camera-controls
             ar
@@ -45,12 +88,12 @@ export default function SolarSystemPage() {
         </div>
       ) : (
         <>
-          {/* Normal Content */}
+          {/* Normal Experience UI */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* 3D Model */}
+            {/* Model Viewer */}
             <div className="md:col-span-2 relative">
               <model-viewer
-                src="/models/realistic_human_heart.glb"
+                src={`/models/${experience.modelFile}`}
                 auto-rotate
                 camera-controls
                 ar
@@ -71,16 +114,14 @@ export default function SolarSystemPage() {
               </button>
             </div>
 
-            {/* Review Panel */}
+            {/* Review Section */}
             <div className="bg-[#0e223a] rounded-lg p-6 shadow-lg flex flex-col justify-between h-[650px]">
               <div>
                 <h3 className="text-xl font-semibold mb-2">User Reviews</h3>
                 <p className="text-sm text-white/80 mb-4">⭐ 4.7 (32 ratings)</p>
                 <ul className="space-y-2 text-sm max-h-40 overflow-y-auto pr-2">
                   {reviews.map((r, i) => (
-                    <li key={i} className="text-white/70">
-                      {r}
-                    </li>
+                    <li key={i} className="text-white/70">{r}</li>
                   ))}
                 </ul>
               </div>
@@ -105,27 +146,23 @@ export default function SolarSystemPage() {
 
           {/* Experience Details */}
           <section className="mt-12 bg-[#0c1e30] p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold mb-4">Human Anatomy</h2>
-            <p className="text-white/80 mb-6 max-w-3xl">
-              Explore the solar system in immersive 3D using AR and VR. Learn about planets,
-              moons, and the sun like never before.
-            </p>
-
+            <h2 className="text-2xl font-bold mb-4">{experience.title}</h2>
+            <p className="text-white/80 mb-6 max-w-3xl">{experience.description}</p>
             <div className="flex items-center gap-4">
               <img
                 src="/images/profile.jpeg"
-                alt="Prof. Marcus"
+                alt="Author"
                 className="w-12 h-12 rounded-full border-2 border-cyan-500"
               />
               <span className="text-white/80">
-                Created by <strong>Prof. Marcus</strong>
+                Created by <strong>{experience.author}</strong>
               </span>
             </div>
           </section>
         </>
       )}
 
-      {/* 🗨️ Floating Chat Button */}
+      {/* Floating Chat Button */}
       <div
         className="fixed z-[999] cursor-move"
         style={{ bottom: '24px', right: '24px' }}
@@ -138,7 +175,6 @@ export default function SolarSystemPage() {
           💬
         </Button>
 
-        {/* Chat Popup */}
         {chatOpen && (
           <div className="absolute bottom-20 right-0 bg-[#0f2c2c] text-white p-4 rounded-lg shadow-xl w-80 z-50">
             <p className="text-sm mb-2 font-semibold">Ask your assistant anything!</p>
